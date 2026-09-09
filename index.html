@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ACUE CORPORATION — 1995</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #063f39;
+
+            background:
+                radial-gradient(
+                    ellipse at 18% 15%,
+                    rgba(255,255,255,0.95) 0 3%,
+                    transparent 15%
+                ),
+                radial-gradient(
+                    ellipse at 78% 9%,
+                    rgba(255,255,255,0.9) 0 2%,
+                    transparent 13%
+                ),
+                linear-gradient(
+                    #86edff 0%,
+                    #d5fbff 38%,
+                    #65d7c1 39%,
+                    #20a77d 100%
+                );
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           CONTENEDOR PRINCIPAL
+        ========================= */
+
+        .site {
+            width: min(1080px, 94%);
+            margin: 22px auto;
+
+            background: rgba(250,255,253,0.92);
+
+            border: 2px solid #087e69;
+
+            border-radius:
+                18px
+                18px
+                8px
+                8px;
+
+            box-shadow:
+                0 7px 0 rgba(0,90,75,0.22),
+                0 15px 35px rgba(0,75,60,0.25);
+
+            overflow: hidden;
+        }
+
+
+        /* =========================
+           CABECERA
+        ========================= */
+
+        header {
+            display: flex;
+            align-items: center;
+
+            gap: 18px;
+
+            padding: 20px 28px;
+
+            background:
+                linear-gradient(
+                    #ffffff,
+                    #dcfff4
+                );
+
+            border-bottom:
+                2px solid #63d6b5;
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            width: 70px;
+            height: 70px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle at 35% 28%,
+                    #ffffff 0 8%,
+                    #62f3d0 9% 30%,
+                    #079d78 31% 60%,
+                    #005b50 61%
+                );
+
+            border: 4px solid white;
+
+            box-shadow:
+                0 0 0 2px #07836e,
+                inset 0 0 12px rgba(255,255,255,0.9);
+
+            flex-shrink: 0;
+        }
+
+
+        h1 {
+            margin: 0;
+
+            color: #00745e;
+
+            font-size:
+                clamp(28px, 5vw, 48px);
+
+            letter-spacing: 2px;
+
+            text-shadow:
+                1px 2px white;
+        }
+
+
+        .tagline {
+            margin: 3px 0 0;
+
+            color: #268b79;
+
+            font-size: 13px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================
+           MENU
+        ========================= */
+
+        nav {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            padding: 10px 18px;
+
+            background:
+                linear-gradient(
+                    #57e8cf,
+                    #0b9b78
+                );
+        }
+
+
+        nav a {
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            padding: 9px 14px;
+
+            border-radius: 8px;
+
+            background:
+                linear-gradient(
+                    #8affea,
+                    #07926f
+                );
+
+            border:
+                1px solid #05765f;
+
+            box-shadow:
+                inset 0 1px rgba(255,255,255,0.8),
+                0 2px 2px rgba(0,60,50,0.25);
+
+            cursor: pointer;
+
+            transition:
+                transform 0.15s,
+                filter 0.15s;
+        }
+
+
+        nav a:hover {
+            filter: brightness(1.12);
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        /* =========================
+           CONTENIDO
+        ========================= */
+
+        main {
+            padding: 25px;
+        }
+
+
+        .hero {
+            display: grid;
+
+            grid-template-columns:
+                1.45fr 1fr;
+
+            gap: 20px;
+        }
+
+
+        .panel {
+            background:
+                rgba(255,255,255,0.93);
+
+            border:
+                2px solid #72ceb9;
+
+            border-radius: 14px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 5px 12px rgba(0,80,65,0.18);
+        }
+
+
+        .panel h2 {
+            color: #00785f;
+
+            margin-top: 0;
+        }
+
+
+        /* =========================
+           PANEL FRUTIGER AERO
+        ========================= */
+
+        .aqua {
+            min-height: 270px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+
+                radial-gradient(
+                    ellipse at 35% 28%,
+                    #ffffff 0 3%,
+                    transparent 15%
+                ),
+
+                radial-gradient(
+                    ellipse at 70% 65%,
+                    rgba(255,255,255,0.75) 0 4%,
+                    transparent 15%
+                ),
+
+                linear-gradient(
+                    #77efff,
+                    #31c7b0 55%,
+                    #15956f
+                );
+        }
+
+
+        .aqua::after {
+            content: "ACUE";
+
+            position: absolute;
+
+            bottom: 10px;
+
+            left: 0;
+            right: 0;
+
+            text-align: center;
+
+            color:
+                rgba(255,255,255,0.48);
+
+            font-size: 68px;
+
+            font-weight: 900;
+
+            letter-spacing: 10px;
+
+            transform:
+                skewY(-4deg);
+        }
+
+
+        /* =========================
+           PALABRA MULTIVERSO
+        ========================= */
+
+        .multiverse {
+
+            color: #005f4e;
+
+            font-weight: 900;
+
+            text-decoration: underline;
+
+            cursor: pointer;
+
+        }
+
+
+        .multiverse:hover {
+
+            color: #00a886;
+
+        }
+
+
+        /* =========================
+           ESTADÍSTICAS
+        ========================= */
+
+        .facts {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 12px;
+
+            margin-top: 20px;
+        }
+
+
+        .fact {
+
+            background:
+                linear-gradient(
+                    #ffffff,
+                    #e3fff6
+                );
+
+            border:
+                1px solid #6acdb5;
+
+            border-radius: 10px;
+
+            padding: 15px;
+
+            text-align: center;
+        }
+
+
+        .fact strong {
+
+            display: block;
+
+            color: #00775f;
+
+            font-size: 22px;
+
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+
+            padding:
+                16px 25px;
+
+            background:
+                linear-gradient(
+                    #e5fff9,
+                    #a7ead8
+                );
+
+            border-top:
+                2px solid #62cbb0;
+
+            color:
+                #39786e;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           PANTALLA DEL OJO
+        ========================= */
+
+        #anomalyOverlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            display: none;
+
+            background: #000000;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+        }
+
+
+        #anomalyOverlay.active {
+
+            display: flex;
+
+        }
+
+
+        .eye {
+
+            width:
+                min(410px, 86vw);
+
+            height: auto;
+
+            display: block;
+
+        }
+
+
+        /* =========================
+           TEXTO SECRETO
+        ========================= */
+
+        #secretText {
+
+            color: white;
+
+            font-size:
+                clamp(22px, 4vw, 40px);
+
+            margin-top: 48px;
+
+            letter-spacing: 3px;
+
+            min-height: 1.3em;
+
+            text-align: center;
+
+            font-family:
+                Georgia,
+                serif;
+
+        }
+
+
+        /* =========================
+           MÓVILES
+        ========================= */
+
+        @media(max-width:700px) {
+
+            .hero {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .facts {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            header {
+
+                padding: 15px;
+
+            }
+
+            main {
+
+                padding: 15px;
+
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<div class="site">
+
+
+    <!-- =====================
+         HEADER
+    ====================== -->
+
+    <header>
+
+        <div class="logo"></div>
+
+        <div>
+
+            <h1>
+                ACUE CORPORATION
+            </h1>
+
+            <p class="tagline">
+
+                ADVANCED COSMOLOGICAL &
+                UNEXPLAINED EVENTS DIVISION
+
+                · EST. 1978
+
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================
+         MENU
+    ====================== -->
+
+    <nav>
+
+        <a href="#inicio">
+            Inicio
+        </a>
+
+        <a href="#investigacion">
+            Investigación
+        </a>
+
+        <a href="#archivos">
+            Archivos
+        </a>
+
+        <a href="#contacto">
+            Contacto
+        </a>
+
+    </nav>
+
+
+    <!-- =====================
+         CONTENIDO
+    ====================== -->
+
+    <main id="inicio">
+
+
+        <section class="hero">
+
+
+            <div class="panel">
+
+                <h2>
+                    Explorando lo que existe
+                    más allá de lo conocido
+                </h2>
+
+
+                <p>
+
+                    ACUE Corporation es una
+                    organización internacional
+                    dedicada al estudio de
+                    fenómenos cosmológicos,
+                    anomalías físicas y entidades
+                    cuya existencia desafía los
+                    modelos científicos convencionales.
+
+                </p>
+
+
+                <p>
+
+                    Desde nuestros laboratorios
+                    de investigación, nuestros
+                    equipos trabajan para comprender
+                    la estructura del
+
+                    <span
+                        class="multiverse"
+                        id="multiverse"
+                    >
+                        multiverso
+                    </span>
+
+                    y las formas de vida que podrían
+                    existir fuera de nuestra realidad.
+
+                </p>
+
+
+                <p>
+
+                    <strong>
+                        Clasificación:
+                    </strong>
+
+                    Investigación restringida
+                    · Nivel 4
+
+                </p>
+
+            </div>
+
+
+            <div class="panel aqua">
+
+                <h2>
+                    ACUE · Horizonte 95
+                </h2>
+
+                <p>
+                    Programa de observación dimensional.
+                </p>
+
+                <p>
+
+                    Estado:
+
+                    <strong>
+                        ACTIVO
+                    </strong>
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ESTADÍSTICAS -->
+
+        <section
+            class="facts"
+            id="investigacion"
+        >
+
+            <div class="fact">
+
+                <strong>
+                    17
+                </strong>
+
+                fenómenos bajo observación
+
+            </div>
+
+
+            <div class="fact">
+
+                <strong>
+                    06
+                </strong>
+
+                entidades catalogadas
+
+            </div>
+
+
+            <div class="fact">
+
+                <strong>
+                    03
+                </strong>
+
+                portales confirmados
+
+            </div>
+
+        </section>
+
+
+        <!-- ARCHIVOS -->
+
+        <section
+            class="panel"
+            id="archivos"
+            style="margin-top:20px"
+        >
+
+            <h2>
+                Archivo público — 1995
+            </h2>
+
+
+            <p>
+
+                <b>
+                    Comunicado:
+                </b>
+
+                ACUE Corporation amplía sus
+                instalaciones para el estudio
+                de anomalías interdimensionales.
+
+            </p>
+
+
+            <p>
+
+                <b>
+                    Nota científica:
+                </b>
+
+                Todos los experimentos se realizan
+                bajo estrictos protocolos de seguridad.
+
+            </p>
+
+
+            <p
+                style="
+                    font-size:11px;
+                    color:#5b8980;
+                "
+            >
+
+                Última actualización:
+                18 de octubre de 1995
+
+                ·
+
+                Sistema ACUE/NET 2.4
+
+            </p>
+
+        </section>
+
+
+        <!-- CONTACTO -->
+
+        <section
+            class="panel"
+            id="contacto"
+            style="margin-top:20px"
+        >
+
+            <h2>
+                Contacto
+            </h2>
+
+
+            <p>
+
+                ACUE Corporation
+
+                ·
+
+                Department of Public Information
+
+            </p>
+
+
+            <p>
+
+                PO Box 1995
+
+                ·
+
+                North Atlantic Research Zone
+
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+    <footer>
+
+        © 1995 ACUE Corporation.
+
+        All rights reserved.
+
+        · ACUE/NET
+
+        · Documento de acceso público.
+
+    </footer>
+
+
+</div>
+
+
+<!-- =========================
+     PANTALLA DEL OJO
+========================= -->
+
+<div
+    id="anomalyOverlay"
+    aria-hidden="true"
+>
+
+
+    <!--
+        Pon la imagen del ojo en el repositorio
+        con el nombre:
+
+        eye.jpg
+    -->
+
+    <img
+        class="eye"
+        src="eye.jpg"
+        alt=""
+    >
+
+
+    <div id="secretText"></div>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   ACTIVAR ANOMALÍA
+========================= */
+
+const trigger =
+    document.getElementById(
+        "multiverse"
+    );
+
+
+const overlay =
+    document.getElementById(
+        "anomalyOverlay"
+    );
+
+
+const secret =
+    document.getElementById(
+        "secretText"
+    );
+
+
+trigger.addEventListener(
+    "click",
+    () => {
+
+
+        /*
+         * Ocultamos la página
+         */
+
+        overlay.classList.add(
+            "active"
+        );
+
+
+        overlay.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+
+        secret.textContent = "";
+
+
+        /*
+         * Esperamos exactamente
+         * cinco segundos
+         */
+
+        setTimeout(
+            () => {
+
+
+                const message =
+                    "Aun falta un poco mas";
+
+
+                let i = 0;
+
+
+                /*
+                 * Escribir lentamente
+                 */
+
+                function typeText() {
+
+
+                    if (
+                        i < message.length
+                    ) {
+
+
+                        secret.textContent +=
+                            message[i];
+
+
+                        i++;
+
+
+                        setTimeout(
+                            typeText,
+                            105
+                        );
+
+                    }
+
+                }
+
+
+                typeText();
+
+
+            },
+            5000
+        );
+
+    }
+);
+
+
+/* =========================
+   ESC PARA SALIR
+========================= */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+
+        if (
+            event.key === "Escape"
+        ) {
+
+
+            overlay.classList.remove(
+                "active"
+            );
+
+
+            overlay.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            secret.textContent = "";
+
+        }
+
+    }
+);
+
+
+</script>
+
+
+</body>
+</html>
+
+<--Que haces husmeando aqui...-->
+
+
+<--...Bien...-->
+
+
+<--...NADA VALDRA LA PENA...-->
+
+
+<--05/5/2005-->
