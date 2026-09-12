@@ -4,37 +4,320 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SOY YO</title>
+    <title>ENTIDAD — ACUE</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         html, body {
             margin: 0;
-            padding: 0;
             width: 100%;
             height: 100%;
-            background: black;
-            color: white;
+            background: #000;
             overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: Arial, sans-serif;
         }
 
-        h1 {
-            font-size: 32px;
+        /* Imagen de la Entidad */
+        #entidad {
+            max-width: 80vw;
+            max-height: 80vh;
+            object-fit: contain;
+
+            position: relative;
+            z-index: 2;
+
+            filter: contrast(1.15);
+        }
+
+        /* Pantalla inicial */
+        #inicio {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 10;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            color: white;
+        }
+
+        #inicio h1 {
+            font-size: 28px;
             font-weight: normal;
-            letter-spacing: 2px;
+            letter-spacing: 8px;
+            margin-bottom: 35px;
+        }
+
+        #entrar {
+            background: transparent;
+            color: white;
+
+            border: 1px solid white;
+            padding: 12px 35px;
+
+            font-size: 14px;
+            letter-spacing: 4px;
+
+            cursor: pointer;
+        }
+
+        #entrar:hover {
+            background: white;
+            color: black;
+        }
+
+        /* Letras */
+        #letras {
+            position: fixed;
+            left: 50%;
+            bottom: 8%;
+
+            transform: translateX(-50%);
+
+            width: 90%;
+            text-align: center;
+
+            color: white;
+
+            font-size: 22px;
+            font-style: italic;
+
+            opacity: 0;
+            transition: opacity 0.3s ease;
+
+            z-index: 5;
+
+            text-shadow:
+                0 0 5px #000,
+                0 0 10px #000;
+        }
+
+        /* YouTube invisible */
+        #youtube {
+            position: fixed;
+            width: 1px;
+            height: 1px;
+
+            left: -100px;
+            top: -100px;
+
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Botón de regreso */
+        #volver {
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+
+            color: #555;
+            text-decoration: none;
+
+            font-size: 11px;
+            z-index: 20;
+        }
+
+        #volver:hover {
+            color: white;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Aqui estoy</h1>
+    <!-- Imagen -->
+    <img
+        id="entidad"
+        src="I WANT TO BE FREE.png"
+        alt="Entidad"
+    >
+
+    <!-- Letras -->
+    <div id="letras"></div>
+
+    <!-- Video de YouTube -->
+    <div id="youtube"></div>
+
+    <!-- Pantalla inicial -->
+    <div id="inicio">
+        <h1>ARCHIVO ENTIDAD</h1>
+
+        <button id="entrar">
+            ENTRAR
+        </button>
+    </div>
+
+    <!-- Volver a ACUE -->
+    <a id="volver" href="../">
+        ACUE / NET
+    </a>
+
+
+    <script>
+
+        /*
+         * ============================================
+         * YOUTUBE
+         * ============================================
+         *
+         * Video:
+         * Vera Lynn - We'll Meet Again
+         */
+
+        let player;
+
+        const videoID = "HsM_VmN6ytk";
+
+
+        // Cargar API de YouTube
+        const tag = document.createElement("script");
+
+        tag.src = "https://www.youtube.com/iframe_api";
+
+        document.head.appendChild(tag);
+
+
+        function onYouTubeIframeAPIReady() {
+
+            player = new YT.Player("youtube", {
+
+                height: "1",
+                width: "1",
+
+                videoId: videoID,
+
+                playerVars: {
+                    autoplay: 0,
+                    controls: 0,
+                    disablekb: 1,
+                    modestbranding: 1,
+                    rel: 0
+                },
+
+                events: {
+                    onReady: function () {
+                        console.log("Entidad: audio preparado.");
+                    }
+                }
+
+            });
+
+        }
+
+
+        /*
+         * ============================================
+         * ENTRAR
+         * ============================================
+         */
+
+        document.getElementById("entrar").addEventListener("click", function () {
+
+            document.getElementById("inicio").style.display = "none";
+
+            if (player) {
+                player.playVideo();
+            }
+
+            iniciarLetras();
+
+        });
+
+
+        /*
+         * ============================================
+         * LETRAS
+         * ============================================
+         *
+         * Acá podés poner las líneas que quieras
+         * mostrar sincronizadas con la canción.
+         *
+         * "time" = segundos desde que empieza.
+         *
+         * Ejemplo:
+         *
+         * { time: 10, text: "Primera línea" }
+         *
+         * { time: 15, text: "Segunda línea" }
+         */
+
+        const lyricTimeline = [
+
+            /*
+            {
+                time: 5,
+                text: "Primera línea"
+            },
+
+            {
+                time: 10,
+                text: "Segunda línea"
+            },
+
+            {
+                time: 15,
+                text: "Tercera línea"
+            }
+            */
+
+        ];
+
+
+        function iniciarLetras() {
+
+            if (lyricTimeline.length === 0) {
+                return;
+            }
+
+            setInterval(function () {
+
+                if (!player) {
+                    return;
+                }
+
+                const tiempo = player.getCurrentTime();
+
+                let textoActual = "";
+
+                for (let i = 0; i < lyricTimeline.length; i++) {
+
+                    if (tiempo >= lyricTimeline[i].time) {
+                        textoActual = lyricTimeline[i].text;
+                    }
+
+                }
+
+                const letras = document.getElementById("letras");
+
+                if (textoActual !== "") {
+
+                    letras.innerText = textoActual;
+                    letras.style.opacity = "1";
+
+                } else {
+
+                    letras.style.opacity = "0";
+
+                }
+
+            }, 100);
+
+        }
+
+    </script>
 
 </body>
 </html>
