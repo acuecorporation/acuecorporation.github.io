@@ -378,6 +378,13 @@
         }
 
 
+        .anomaly-list { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:18px; }
+        .anomaly-card { display:block; padding:16px 18px; color:#075447; text-decoration:none; background:linear-gradient(#fff,#dffff4); border:2px solid #63cdb4; border-radius:11px; box-shadow:inset 0 1px rgba(255,255,255,.9),0 3px 7px rgba(0,80,65,.14); transition:.15s; }
+        .anomaly-card:hover { transform:translateY(-2px); filter:brightness(1.05); }
+        .anomaly-card strong { display:block; color:#00785f; font-size:18px; letter-spacing:1px; }
+        .anomaly-card span { display:block; margin-top:5px; color:#4a8278; font-size:12px; }
+        .anomaly-warning { margin-top:16px; padding:10px 12px; border-left:4px solid #0b9b78; background:#e8fff8; color:#39786e; font-size:11px; }
+
         /* =========================
            FOOTER
         ========================= */
@@ -491,6 +498,10 @@
 
             }
 
+            .anomaly-list {
+                grid-template-columns: 1fr;
+            }
+
             header {
 
                 padding: 15px;
@@ -559,6 +570,10 @@
 
         <a href="#archivos">
             Archivos
+        </a>
+
+        <a href="#anomalias">
+            Anomalías
         </a>
 
         <a href="#contacto">
@@ -755,6 +770,22 @@
 
             </p>
 
+        </section>
+
+
+        <!-- CATÁLOGO DE ANOMALÍAS -->
+
+        <section class="panel" id="anomalias" style="margin-top:20px">
+            <h2>Anomalías registradas</h2>
+            <p>Expedientes actualmente disponibles en el sistema público ACUE/NET. Seleccione un registro para acceder a su archivo.</p>
+            <div class="anomaly-list">
+                <a class="anomaly-card" href="Ralsei/"><strong>RALSEI</strong><span>Entidad · Registro especial</span></a>
+                <a class="anomaly-card" href="Cadence/"><strong>CADENCE</strong><span>Entidad · Clasificación restringida</span></a>
+                <a class="anomaly-card" href="Stella/"><strong>STELLA ELLIOT</strong><span>Personal / Entidad · Nivel especial</span></a>
+                <a class="anomaly-card" href="Sonic/"><strong>SONIC</strong><span>Fenómeno · El héroe azul</span></a>
+                <a class="anomaly-card" href="Entidad/"><strong>ENTIDAD</strong><span>Registro desconocido · Acceso limitado</span></a>
+            </div>
+            <div class="anomaly-warning">AVISO ACUE: algunos expedientes pueden contener información incompleta, censurada o potencialmente inestable.</div>
         </section>
 
 
