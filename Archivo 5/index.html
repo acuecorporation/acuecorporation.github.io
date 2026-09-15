@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>REGISTRO 574 — ACUE</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100%;
+            background: #050505;
+            color: #e8e8e8;
+            font-family: "Courier New", monospace;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 850px;
+            min-height: 500px;
+            border: 1px solid #333;
+            background: #080808;
+            padding: 35px;
+            box-shadow: 0 0 30px rgba(255,255,255,0.03);
+        }
+
+        .header {
+            color: #777;
+            border-bottom: 1px solid #292929;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 13px;
+        }
+
+        .conversation {
+            line-height: 1.8;
+            font-size: 16px;
+            min-height: 300px;
+        }
+
+        .line {
+            opacity: 0;
+            margin: 15px 0;
+            animation: aparecer 1s forwards;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .soldado {
+            color: #aaa;
+        }
+
+        .entidad {
+            color: white;
+        }
+
+        .system {
+            color: #555;
+            font-size: 13px;
+        }
+
+        .redacted {
+            color: #777;
+        }
+
+        #continuar {
+            display: none;
+
+            margin-top: 30px;
+            padding: 12px 25px;
+
+            background: transparent;
+            border: 1px solid #555;
+            color: white;
+
+            font-family: "Courier New", monospace;
+            cursor: pointer;
+        }
+
+        #continuar:hover {
+            background: white;
+            color: black;
+        }
+
+        /* LOGIN */
+
+        #login {
+            display: none;
+            margin-top: 30px;
+        }
+
+        #login h2 {
+            font-size: 20px;
+            font-weight: normal;
+            letter-spacing: 3px;
+        }
+
+        .campo {
+            margin: 20px 0;
+        }
+
+        label {
+            display: block;
+            color: #777;
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        input {
+            width: 100%;
+            max-width: 400px;
+
+            background: #000;
+            color: white;
+
+            border: 1px solid #444;
+            padding: 12px;
+
+            font-family: "Courier New", monospace;
+            font-size: 15px;
+
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #888;
+        }
+
+        #iniciar {
+            margin-top: 10px;
+
+            background: transparent;
+            border: 1px solid #666;
+            color: white;
+
+            padding: 12px 30px;
+
+            font-family: "Courier New", monospace;
+            cursor: pointer;
+        }
+
+        #iniciar:hover {
+            background: white;
+            color: black;
+        }
+
+        #error {
+            display: none;
+            color: #777;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+
+        /* SESIÓN */
+
+        #sesion {
+            display: none;
+        }
+
+        #sesion h1 {
+            font-size: 30px;
+            font-weight: normal;
+            letter-spacing: 5px;
+        }
+
+        .archivo {
+            border: 1px solid #222;
+            padding: 20px;
+            margin-top: 30px;
+            color: #aaa;
+        }
+
+        .logout {
+            margin-top: 30px;
+
+            background: transparent;
+            color: #555;
+
+            border: none;
+            cursor: pointer;
+
+            font-family: "Courier New", monospace;
+        }
+
+        .logout:hover {
+            color: white;
+        }
+
+        .blink {
+            animation: parpadeo 1s infinite;
+        }
+
+        @keyframes parpadeo {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        ACUE CORPORATION // ARCHIVO 5<br>
+        REGISTRO 574
+    </div>
+
+
+    <!-- CONVERSACIÓN -->
+
+    <div id="conversacion" class="conversation">
+
+        <div class="system line" style="animation-delay: 1s;">
+            Registro 574....
+        </div>
+
+        <div class="soldado line" style="animation-delay: 3s;">
+            *Un soldado habla a algo o alguien*
+        </div>
+
+        <div class="soldado line" style="animation-delay: 5s;">
+            - Ehh... muy bien supongo que... estamos aqui...
+        </div>
+
+        <div class="entidad line" style="animation-delay: 8s;">
+            - ....Que es lo que quieres...
+        </div>
+
+        <div class="soldado line" style="animation-delay: 11s;">
+            - Mira yo..., solo necesito que te registres en la verificacion de el sistema.
+        </div>
+
+        <div class="entidad line" style="animation-delay: 15s;">
+            - Bien...
+        </div>
+
+        <div class="system line" style="animation-delay: 18s;">
+            *La cosa se registra por nombre de "Mark Afternoon"*
+        </div>
+
+        <div class="system line" style="animation-delay: 21s;">
+            *Contraseña registrada: IWANTTOBEFREE*
+        </div>
+
+        <div class="system line" style="animation-delay: 24s;">
+            REGISTRO COMPLETADO.
+        </div>
+
+        <button id="continuar">
+            CONTINUAR
+        </button>
+
+    </div>
+
+
+    <!-- LOGIN -->
+
+    <div id="login">
+
+        <h2>VERIFICACIÓN DE SISTEMA</h2>
+
+        <p class="system">
+            Introduzca las credenciales del usuario registrado.
+        </p>
+
+        <div class="campo">
+            <label>NOMBRE DE USUARIO</label>
+
+            <input
+                id="usuario"
+                type="text"
+                autocomplete="off"
+                placeholder="Usuario..."
+            >
+        </div>
+
+        <div class="campo">
+            <label>CONTRASEÑA</label>
+
+            <input
+                id="password"
+                type="password"
+                placeholder="Contraseña..."
+            >
+        </div>
+
+        <button id="iniciar">
+            INICIAR SESIÓN
+        </button>
+
+        <div id="error">
+            ACCESO DENEGADO.
+        </div>
+
+    </div>
+
+
+    <!-- SESIÓN INICIADA -->
+
+    <div id="sesion">
+
+        <h1>BIENVENIDO, MARK.</h1>
+
+        <p>
+            Sesión iniciada correctamente.
+        </p>
+
+        <div class="archivo">
+
+            <strong>USUARIO:</strong> Mark Afternoon<br><br>
+
+            <strong>ESTADO:</strong> REGISTRADO<br><br>
+
+            <strong>REGISTRO:</strong> 574<br><br>
+
+            <strong>NIVEL DE ACCESO:</strong> ████████
+
+        </div>
+
+        <p class="system" style="margin-top:30px;">
+            Hay archivos adicionales disponibles.
+        </p>
+
+        <p class="system blink">
+            _
+        </p>
+
+        <button class="logout" onclick="cerrarSesion()">
+            [ CERRAR SESIÓN ]
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /*
+     * ==========================================
+     * MOSTRAR BOTÓN DESPUÉS DE LA CONVERSACIÓN
+     * ==========================================
+     */
+
+    setTimeout(function() {
+
+        document.getElementById("continuar").style.display = "inline-block";
+
+    }, 27000);
+
+
+    /*
+     * ==========================================
+     * CONTINUAR → LOGIN
+     * ==========================================
+     */
+
+    document.getElementById("continuar").addEventListener("click", function() {
+
+        document.getElementById("conversacion").style.display = "none";
+
+        document.getElementById("login").style.display = "block";
+
+    });
+
+
+    /*
+     * ==========================================
+     * DATOS DEL ARG
+     * ==========================================
+     */
+
+    const USUARIO_CORRECTO = "Mark Afternoon";
+    const PASSWORD_CORRECTA = "IWANTTOBEFREE";
+
+
+    /*
+     * ==========================================
+     * INICIAR SESIÓN
+     * ==========================================
+     */
+
+    document.getElementById("iniciar").addEventListener("click", function() {
+
+        const usuario =
+            document.getElementById("usuario").value;
+
+        const password =
+            document.getElementById("password").value;
+
+
+        if (
+            usuario === USUARIO_CORRECTO &&
+            password === PASSWORD_CORRECTA
+        ) {
+
+            document.getElementById("login").style.display = "none";
+
+            document.getElementById("sesion").style.display = "block";
+
+            /*
+             * Guarda la sesión en este navegador.
+             */
+            localStorage.setItem(
+                "acue_mark_afternoon",
+                "true"
+            );
+
+        } else {
+
+            document.getElementById("error").style.display = "block";
+
+        }
+
+    });
+
+
+    /*
+     * ==========================================
+     * CERRAR SESIÓN
+     * ==========================================
+     */
+
+    function cerrarSesion() {
+
+        localStorage.removeItem(
+            "acue_mark_afternoon"
+        );
+
+        location.reload();
+
+    }
+
+
+    /*
+     * ==========================================
+     * RECORDAR SESIÓN
+     * ==========================================
+     */
+
+    window.addEventListener("load", function() {
+
+        if (
+            localStorage.getItem("acue_mark_afternoon")
+            === "true"
+        ) {
+
+            document.getElementById("conversacion").style.display = "none";
+
+            document.getElementById("login").style.display = "none";
+
+            document.getElementById("sesion").style.display = "block";
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
