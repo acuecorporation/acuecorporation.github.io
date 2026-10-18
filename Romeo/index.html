@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <title>Romeo — Romeo</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; margin: 0; }
+    body { background: #000; color: #ededed; font-family: 'Courier New', Courier, monospace; overflow-x: hidden; }
+
+    /* Escena ARG */
+    #escena {
+      position: fixed; inset: 0; display: grid; place-items: center;
+      padding: 22px; overflow: auto; background: #000;
+    }
+    #escena::before {
+      content: ''; pointer-events: none; position: fixed; inset: 0; opacity: .18;
+      background: repeating-linear-gradient(to bottom, transparent 0, transparent 3px, #171717 4px);
+      z-index: 1;
+    }
+    .contenedor {
+      width: min(790px, 100%);
+      max-height: calc(100vh - 44px); overflow: auto;
+      text-align: left; padding: 20px 12px;
+      scrollbar-color: #444 #090909;
+    }
+    .texto {
+      opacity: 0; filter: blur(12px); color: #f0f0f0;
+      font-size: clamp(13px, 1.6vw + 7px, 19px);
+      line-height: 1.65; letter-spacing: .02em;
+      text-shadow: 0 0 2px #fff, 2px 0 7px rgba(176, 0, 0, .26);
+      animation: aparicion 8s ease-in-out forwards;
+    }
+    .texto p { margin: 0 0 14px; }
+    .texto .datos { font-weight: bold; font-size: 1.08em; }
+    .texto .poder { padding-left: 14px; }
+    .texto .nota { color: #a6a6a6; margin-top: 22px; }
+    .texto .mortal { color: #ffb1b1; }
+    @keyframes aparicion {
+      0% { opacity: 0; filter: blur(12px); }
+      35% { opacity: .16; filter: blur(8px); }
+      70% { opacity: .67; filter: blur(2px); }
+      100% { opacity: 1; filter: blur(0); }
+    }
+    /* El temblor se intensifica a medida que se revela el texto. */
+    .sacudida-suave { animation: temblor-suave .23s steps(2, end) infinite; }
+    .sacudida-media { animation: temblor-medio .12s steps(2, end) infinite; }
+    .sacudida-fuerte { animation: temblor-fuerte .075s steps(2, end) infinite; }
+    @keyframes temblor-suave {
+      0% { transform: translate(0, 0); } 50% { transform: translate(1px, 0); }
+    }
+    @keyframes temblor-medio {
+      0% { transform: translate(-2px, 1px); } 50% { transform: translate(2px, -1px); }
+    }
+    @keyframes temblor-fuerte {
+      0% { transform: translate(-4px, 1px); } 25% { transform: translate(3px, -2px); }
+      50% { transform: translate(-2px, 3px); } 75% { transform: translate(4px, -1px); }
+    }
+
+    /* Imitación ficticia de una página de error del navegador. */
+    #error {
+      display: none; min-height: 100vh; width: 100%;
+      background: #fff; color: #3c4043; font-family: Arial, Helvetica, sans-serif;
+      padding: max(12vh, 70px) 24px 40px;
+    }
+    #error.visible { display: block; }
+    .error-inner { width: min(600px, 100%); margin: 0 auto; }
+    .icono-error { width: 44px; height: 54px; margin-bottom: 38px; }
+    .error-titulo { font-size: 25px; font-weight: 500; line-height: 1.3; margin: 0 0 20px; }
+    .error-mensaje { font-size: 16px; font-weight: bold; line-height: 1.5; margin: 0 0 16px; }
+    .error-codigo { margin: 26px 0 34px; color: #70757a; font-size: 12px; letter-spacing: .02em; }
+    #reintentar {
+      background: #1a73e8; color: #fff; font-size: 14px; font-weight: bold;
+      border: 0; padding: 11px 22px; border-radius: 4px; cursor: pointer;
+    }
+    #reintentar:hover { background: #1765ca; }
+    @media (prefers-reduced-motion: reduce) {
+      .sacudida-suave, .sacudida-media, .sacudida-fuerte { animation: none; }
+      .texto { animation: aparicion 8s linear forwards; }
+    }
+  </style>
+</head>
+<body>
+  <main id="escena" aria-label="Expediente Romeo">
+    <div class="contenedor" id="sacudida">
+      <div class="texto" id="texto">
+        <p class="datos">ATK 999<br>Defensa: 568<br>HP: 7900</p>
+        <p class="poder">Tp 10 ice shock: congela a los enemigos y si no pues le baja -50</p>
+        <p class="poder">Tp 35 scrip heal: cura al player un +36</p>
+        <p class="poder">Tp 50 charger scrip: ase -45 de HP y deja efecto de quemadura que por cada ronda baja -5</p>
+        <p class="poder">Tp 86 scrip fire: baja -80 y deja efecto de quemadura(pero baja 15- por ronda)</p>
+        <p class="poder mortal">Tp 100 dead scrip: -∞</p>
+        <p class="nota">1. Dead scrip es literalmente un swoon-</p>
+      </div>
+    </div>
+  </main>
+
+  <section id="error" aria-label="Pantalla de error ficticia" aria-hidden="true">
+    <div class="error-inner">
+      <svg class="icono-error" viewBox="0 0 44 54" aria-hidden="true">
+        <path d="M5 2H28L42 16V52H5Z" fill="none" stroke="#9aa0a6" stroke-width="3"/>
+        <path d="M28 2V16H42" fill="none" stroke="#9aa0a6" stroke-width="3"/>
+        <path d="M15 32H18M29 32H32" stroke="#9aa0a6" stroke-width="3" stroke-linecap="round"/>
+        <path d="M16 43Q23 37 30 43" fill="none" stroke="#9aa0a6" stroke-width="2.5"/>
+      </svg>
+      <h1 class="error-titulo">No se puede acceder a este sitio web</h1>
+      <p class="error-mensaje">TÚ NO DEBERÍAS ESTAR AQUÍ.</p>
+      <p>Se ha interrumpido la conexión con esta página.</p>
+      <div class="error-codigo">ERR_ACCESS_DENIED</div>
+      <button id="reintentar" type="button">Volver a cargar</button>
+    </div>
+  </section>
+
+  <script>
+    const sacudida = document.getElementById('sacudida');
+    const escena = document.getElementById('escena');
+    const error = document.getElementById('error');
+
+    // El texto tarda 8 segundos en aparecer por completo.
+    setTimeout(() => sacudida.classList.add('sacudida-suave'), 1500);
+    setTimeout(() => {
+      sacudida.classList.remove('sacudida-suave');
+      sacudida.classList.add('sacudida-media');
+    }, 4000);
+    setTimeout(() => {
+      sacudida.classList.remove('sacudida-media');
+      sacudida.classList.add('sacudida-fuerte');
+    }, 6500);
+
+    // Espera 5 segundos DESPUÉS de que el texto haya aparecido por completo.
+    setTimeout(() => {
+      escena.style.display = 'none';
+      error.classList.add('visible');
+      error.setAttribute('aria-hidden', 'false');
+      document.body.style.background = '#fff';
+      document.documentElement.style.colorScheme = 'light';
+      document.title = 'No se puede acceder a este sitio web';
+      window.scrollTo(0, 0);
+    }, 13000);
+
+    document.getElementById('reintentar').addEventListener('click', () => location.reload());
+  </script>
+</body>
+</html>
